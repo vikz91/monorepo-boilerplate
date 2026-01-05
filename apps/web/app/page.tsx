@@ -1,27 +1,25 @@
-import { User, ApiResponse } from '@repo/types';
-import { capitalize } from '@repo/shared';
+import { User, ApiResponse } from '@repo/types'
+import { capitalize } from '@repo/shared'
 
 export default async function Home() {
-  let users: User[] = [];
-  let error = '';
+  let users: User[] = []
+  let error = ''
 
   try {
-    const res = await fetch('http://localhost:3001/api/users', { cache: 'no-store' });
-    const data: ApiResponse<User[]> = await res.json();
+    const res = await fetch('http://localhost:3001/api/users', { cache: 'no-store' })
+    const data: ApiResponse<User[]> = await res.json()
     if (data.success) {
-      users = data.data;
+      users = data.data
     }
-  } catch (e) {
-    error = 'Failed to fetch users. Ensure API is running.';
+  } catch (_e) {
+    error = 'Failed to fetch users. Ensure API is running.'
   }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <h1 className="text-4xl font-bold mb-8">
-          {capitalize('byte Prep Me Monorepo')}
-        </h1>
-        
+        <h1 className="text-4xl font-bold mb-8">{capitalize('byte Prep Me Monorepo')}</h1>
+
         {error && <p className="text-red-500">{error}</p>}
 
         <div className="grid grid-cols-1 gap-4">
@@ -34,5 +32,5 @@ export default async function Home() {
         </div>
       </div>
     </main>
-  );
+  )
 }

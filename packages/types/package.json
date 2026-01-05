@@ -2,16 +2,20 @@
   "name": "@repo/types",
   "version": "0.0.0",
   "private": true,
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.d.mts",
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
-    "lint": "tsc"
+    "build": "tsdown src/index.ts --format cjs,esm --dts",
+    "dev": "tsdown src/index.ts --format cjs,esm --dts --watch",
+    "lint": "bunx eslint .",
+    "format": "prettier --write ."
   },
   "devDependencies": {
-    "tsup": "^8.0.0",
+    "@repo/eslint-config": "workspace:*",
+    "globals": "^17.0.0",
+    "tsdown": "latest",
+    "prettier": "latest",
     "typescript": "^5.0.0"
   }
 }
